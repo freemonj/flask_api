@@ -62,7 +62,7 @@ class IPAddrResource(Resource):
             for theip in ipl:
                 ipaddr = IPAddrs(
                     id=str(uuid.uuid1()),
-                    ip=theip,
+                    ip=str(theip),
                     status='available'
                     )                
                 db.session.add(ipaddr)
