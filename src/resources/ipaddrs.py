@@ -7,7 +7,8 @@ from flask_restful import Resource
 from flask import request
 from Model import db, IPAddrs, IPAddrsSchema
 import traceback as tb
-
+import ipaddress
+import uuid
 
 ipaddrs_schema = IPAddrsSchema(many=True)
 ipaddr_schema = IPAddrsSchema()
@@ -15,7 +16,7 @@ ipaddr_schema = IPAddrsSchema()
 class IPAddrResource(Resource):
     def get(self):
         """
-        GET to return the IP address.
+        GET to return/list the IP address.
         :params: None
         :return: GET HTML code
         :rtype: Integer
@@ -32,8 +33,7 @@ class IPAddrResource(Resource):
         :rtype: Integer
         """
         try:                
-            json_data = request.get_json(force=True)
-            #json_data = json.loads(request.data, strict=False)
+            json_data = request.get_json(force=True)            
         except:
             print("Trace = {}".format(tb.format_exc()))
         if not json_data:
@@ -45,14 +45,41 @@ class IPAddrResource(Resource):
         ipaddrs = IPAddrs.query.filter_by(ip=data['ip']).first()
         if ipaddrs:
             return {'message': 'IP already exists'}, 400
-        ipaddr = IPAddrs(
-            id=json_data['id'],
-            ip=json_data['ip'],
-            status=json_data['status']
-            )
 
-        db.session.add(ipaddr)
-        db.session.commit()
+        adr = ipaddress.ip_network(json_data['ip'])
+        ipl = [str(ip) for ip in adr.hosts()]
+        if ipl == 0:
+            #only an ip address was provided
+            ipaddr = IPAddrs(
+                id=json_data['id'],
+                ip=json_data['ip'],
+                status='available'
+                )   
+            db.session.add(ipaddr)   
+            db.session.commit()      
+        elif ip > 0:
+            #ip with mask was provided
+            for theip in ipl:
+                ipaddr = IPAddrs(
+                    id=str(uuid.uuid1()),
+                    ip=theip,
+                    status='available'
+                    )                
+                db.session.add(ipaddr)
+                db.session.commit()        
+        else:
+            raise("The JSON {} provided  was formated correctly".format(json_data))
+
+
+        
+#         ipaddr = IPAddrs(
+#             id=json_data['id'],
+#             ip=json_data['ip'],
+#             status='available'
+#             )
+
+#         db.session.add(ipaddr)
+#         db.session.commit()
 
         result = ipaddr_schema.dump(ipaddr).data
 
