@@ -48,7 +48,7 @@ class IPAddrResource(Resource):
 
         adr = ipaddress.ip_network(json_data['ip'])
         ipl = [str(ip) for ip in adr.hosts()]
-        if ipl == 0:
+        if len(ipl) == 0:
             #only an ip address was provided
             ipaddr = IPAddrs(
                 id=json_data['id'],
@@ -57,7 +57,7 @@ class IPAddrResource(Resource):
                 )   
             db.session.add(ipaddr)   
             db.session.commit()      
-        elif ip > 0:
+        elif len(ipl) > 0:
             #ip with mask was provided
             for theip in ipl:
                 ipaddr = IPAddrs(

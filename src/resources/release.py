@@ -11,16 +11,16 @@ availabilities_schema = AvailabilitySchema(many=True)
 availability_schema = AvailabilitySchema()
 
 class AvailabilityResource(Resource):
-    def get(self):
-        """
-        GET to return the availability of the CIDR/IP Address.
-        :params: None
-        :return: GET HTML code
-        :rtype: Integer
-        """                
-        availabilities = Availability.query.all()
-        availabilities = availabilties_schema.dump(availabilities).data
-        return {'status': 'success', 'data': availabilities}, 200
+#     def get(self):
+#         """
+#         GET to return the availability of the CIDR/IP Address.
+#         :params: None
+#         :return: GET HTML code
+#         :rtype: Integer
+#         """                
+#         availabilities = Availability.query.all()
+#         availabilities = availabilties_schema.dump(availabilities).data
+#         return {'status': 'success', 'data': availabilities}, 200
     
 #     def post(self):
 #         """
@@ -50,7 +50,7 @@ class AvailabilityResource(Resource):
     
     def put(self):
         """
-        PUT to update/acquire the availability of the CIDR/IP Address.
+        PUT to release to make IP available CIDR/IP Address.
         :params: None
         :return: GET HTML code
         :rtype: Integer
@@ -65,12 +65,22 @@ class AvailabilityResource(Resource):
         if errors:
             return errors, 422
         availability = Availability.query.filter_by(id=data['id']).first()
-        for jblk in availabilities['data'].items():
-            if jblk['ip'] == data['ip']:
-                jblk['status'] = 'available'
-                break
+        adr = ipaddress.ip_network(json_data['ip'])
+        ipl = [str(ip) for ip in adr.hosts()]
+        if len(ipl) == 0:
+            for jblk in availabilities['data'].items():
+                if jblk['ip'] == data['ip']:
+                    jblk['status'] = 'available'
+                    break
+        elif len(ipl) > 0:
+            for theip in ipl:
+                for jblk in availabilities['data'].items():
+                    if jblk['ip'] == theip:
+                        jblk['status'] = 'available'
+                        break
+                
 
         db.session.commit()
-        result = availabilities_schema.dump(availability).data
+        result = availabilities_schema.dump(availabilities).data
 
         return { "status": 'success', 'data': result }, 204
