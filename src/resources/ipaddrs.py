@@ -55,8 +55,7 @@ class IPAddrResource(Resource):
                 ip=json_data['ip'],
                 status='available'
                 )   
-            db.session.add(ipaddr)   
-            db.session.commit()      
+            db.session.add(ipaddr)      
         elif len(ipl) > 0:
             #ip with mask was provided
             for theip in ipl:
@@ -65,22 +64,11 @@ class IPAddrResource(Resource):
                     ip=str(theip),
                     status='available'
                     )                
-                db.session.add(ipaddr)
-                db.session.commit()        
+                db.session.add(ipaddr)      
         else:
             raise("The JSON {} provided  was formated correctly".format(json_data))
-
-
         
-#         ipaddr = IPAddrs(
-#             id=json_data['id'],
-#             ip=json_data['ip'],
-#             status='available'
-#             )
-
-#         db.session.add(ipaddr)
-#         db.session.commit()
-
+        db.session.commit()  
         result = ipaddr_schema.dump(ipaddr).data
 
         return { "status": 'success', 'data': result }, 201
