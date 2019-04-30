@@ -90,7 +90,7 @@ Please edit the following files on your system after running:
     $ sphinx-build -b html <docs directory path> <build/html directory path>
 
 
-My documentation can presently be opened with a web browser at **index.html** file in _flask_api/docs/\_build/_ directory.
+My documentation can presently be opened with a web browser at **index.html** file in _flask_api/\_build/_ directory.
 
 
 Example
