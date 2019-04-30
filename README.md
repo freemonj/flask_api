@@ -20,19 +20,21 @@ The REST API must support four endpoints…
 Methodology
 -----------
 I utilized the **Flask** framework to create my 4 endpoints and services which are the following:
-*POST:* http://localhost:5000/createipaddr
+
+**POST:** http://localhost:5000/createipaddr
 ```
 JSON{
 		'id':<numeric value>
 		'ip':CIDR-> "192.168.0.1" or "192.168.1.0/24"
 	}
 ```
-*GET:*http://localhost:5000/listips
+
+**GET:**http://localhost:5000/listips
 ```
 <NO JSON PAYLOAD>
 ```
 
-*PUT:*http://localhost:5000/acquireip
+**PUT:**http://localhost:5000/acquireip
 ```
 JSON{
 		'id': <placholder for PRIMARY KEY>
@@ -40,14 +42,15 @@ JSON{
     }
 ```
     
-*PUT:*http://localhost:5000/releaseip
+**PUT:**http://localhost:5000/releaseip
 ```
 JSON{
 		'id': <placholder for PRIMARY KEY>
 		'ip':CIDR-> "192.168.0.1" or "192.168.1.0/24" # ip or mask you releasing
 	}
 ```
-Documentation is built with Sphinx
+Documentation is built with Sphinx.
+
 
 Installation / Usage
 --------------------
