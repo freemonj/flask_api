@@ -29,12 +29,12 @@ JSON{
 	}
 ```
 
-**GET:**http://localhost:5000/listips
+**GET:** http://localhost:5000/listips
 ```
 <NO JSON PAYLOAD>
 ```
 
-**PUT:**http://localhost:5000/acquireip
+**PUT:** http://localhost:5000/acquireip
 ```
 JSON{
 		'id': <placholder for PRIMARY KEY>
@@ -42,7 +42,7 @@ JSON{
     }
 ```
     
-**PUT:**http://localhost:5000/releaseip
+**PUT:** http://localhost:5000/releaseip
 ```
 JSON{
 		'id': <placholder for PRIMARY KEY>
