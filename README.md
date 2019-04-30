@@ -85,7 +85,7 @@ Please edit the following files on your system after running:
 	
 	I highly recommend changing the <html_theme> to "default" or "sphinx_rtd_theme"
 
-cd into **docs** and type 
+**Build documentation:** 
 
     $ sphinx-build -b html <docs directory path> <build/html directory path>
 
