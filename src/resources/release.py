@@ -5,7 +5,7 @@ Created on Apr 27, 2019
 '''
 from flask import request
 from flask_restful import Resource
-from Model import db, Availability, AvailabilitySchema
+from Model import db, Availability, AvailabilitySchema, IPAddrsSchema
 
 availabilities_schema = AvailabilitySchema(many=True)
 availability_schema = AvailabilitySchema()
