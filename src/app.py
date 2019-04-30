@@ -6,9 +6,9 @@ Created on Apr 26, 2019
 from flask import Blueprint
 from flask_restful import Api
 from resources.ipaddrs import IPAddrResource
-from resources.cidrblock import CIDRResource
-from resources.acquire import AvailabilityResource
-from resources.release import AvailabilityResource
+from resources.acquire import AcquireResource
+from resources.release import ReleaseResource
+from resources.listaddrs import IPListAddrResource
 
 api_bp = Blueprint('api', __name__)
 api = Api(api_bp)
@@ -18,6 +18,6 @@ api = Api(api_bp)
 # api.add_resource(CIDRResource, '/cidrblock')
 # api.add_resource(AvailabilityResource, '/availability')
 api.add_resource(IPAddrResource, '/createipaddr')
-api.add_resource(IPAddrResource, '/listips')
-api.add_resource(AvailabilityResource, '/acquireip')
-api.add_resource(AvailabilityResource, '/releaseip')
+api.add_resource(IPListAddrResource, '/listips')
+api.add_resource(AcquireResource, '/acquireip')
+api.add_resource(ReleaseResource, '/releaseip')

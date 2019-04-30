@@ -10,7 +10,7 @@ from Model import db, Availability, AvailabilitySchema
 availabilities_schema = AvailabilitySchema(many=True)
 availability_schema = AvailabilitySchema()
 
-class AvailabilityResource(Resource):
+class ReleaseResource(Resource):
 #     def get(self):
 #         """
 #         GET to return the availability of the CIDR/IP Address.

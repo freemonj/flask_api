@@ -27,8 +27,8 @@ class IPAddrs(db.Model):
     #availability = db.relationship('CIDRBlock', backref=db.backref('ipaddress', lazy='dynamic' ))
 
     def __init__(self, id, ip, status):
-        self.ip = ip
         self.id = id
+        self.ip = ip
         self.status = status
 
 class IPAddrsSchema(ma.Schema):
@@ -39,30 +39,6 @@ class IPAddrsSchema(ma.Schema):
     ip = fields.String(required=True)
     status = fields.String(required=True)
 
-class CIDRBlock(db.Model):
-    '''
-    CIDR Block class model
-    '''
-    __tablename__ = 'cidrs'
-    id = db.Column(db.Integer, primary_key=True)
-    cidr = db.Column(db.String(250), nullable=False)
-    status = db.Column(db.String(250), nullable=False)
-    #availability_id = db.Column(db.Integer, db.ForeignKey('cidr.id', ondelete='CASCADE'), nullable=False)
-    #availability = db.relationship('CIDRBlock', backref=db.backref('cidr block', lazy='dynamic' ))
-
-    def __init__(self, id, cidr, status):
-        self.cidr = cidr
-        self.id = id
-        self.status = status
-
-class CIDRBlockSchema(ma.Schema):
-    '''
-    CIDR Block Schema for JSON data
-    '''
-
-    id = fields.Integer()
-    cidr = fields.String(required=True)
-    status = fields.String(required=True)
 
 class Availability(db.Model):
     '''
@@ -70,10 +46,11 @@ class Availability(db.Model):
     '''
     __tablename__ = 'availability'
     id = db.Column(db.Integer, primary_key=True)
-    status = db.Column(db.String(150), unique=False, nullable=False)
+    ip = db.Column(db.String(150), unique=False, nullable=False)
 
-    def __init__(self, status):
-        self.status = status
+    def __init__(self,id, ip):
+        self.ip = ip
+        self.id = id
 
 
 class AvailabilitySchema(ma.Schema):
@@ -81,7 +58,7 @@ class AvailabilitySchema(ma.Schema):
     Availability Schema for JSON data
     '''
     id = fields.Integer()
-    ready = fields.String(required=True)
+    ip = fields.String(required=True)
 
 
 
