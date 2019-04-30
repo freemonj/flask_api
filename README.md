@@ -55,10 +55,10 @@ Documentation is built with Sphinx.
 Installation / Usage
 --------------------
 *Installation Requirements*: 
-	python version 3.x. 
-	postgres database
-	flask framework
-	virtualenv
+	* python version 3.x. 
+	* postgres database
+	* flask framework
+	* virtualenv
 
 *Installation Dependencies*:
 	You need to know the following for your postgres database:
