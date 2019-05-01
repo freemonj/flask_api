@@ -25,7 +25,7 @@ I utilized the **Flask** framework to create my 4 endpoints and services which a
 ```
 JSON{
 		'id':<integer>
-		'ip':CIDR-> "192.168.0.1" or "192.168.1.0/24"
+		'ip':CIDR String -> "192.168.0.1" or "192.168.1.0/24"
 	}
 ```
 
