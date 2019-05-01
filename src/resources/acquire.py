@@ -27,12 +27,16 @@ class AcquireResource(Resource):
                 break
         return ipaddr
         
-    def _processMultipleIP(self,IPAddrs,json_data,theip,id):
+    def _processMultipleIP(self,ipl,ipaddrs):
         for theip in ipl:
-            for jblk in ipaddrs['data'].items():
-                if jblk['ip'] == theip:
-                    jblk['status'] = 'acquired'
-                    db.session.add(jblk)
+            for obj in ipaddrs:
+                if obj['ip'] == theip:
+                    ipaddr = IPAddrs(
+                        id=obj['id'],
+                        ip=obj['ip'],
+                        status='acquired'
+                        )                       
+                    db.session.merge(ipaddr)
                     break
         return
     
@@ -60,7 +64,7 @@ class AcquireResource(Resource):
             ipaddr = self._processSingleIP(ipaddrs, json_data)
             db.session.merge(ipaddr)
         elif len(ipl) > 0:
-            ipaddr = self._processMultipleIP(IPAddrs, json_data, theip, id)
+            ipaddr = self._processMultipleIP(ipl,ipaddrs)
             
         
         db.session.commit()

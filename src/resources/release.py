@@ -27,13 +27,18 @@ class ReleaseResource(Resource):
                 break
         return ipaddr
         
-    def _processMultipleIP(self,IPAddrs,json_data,theip,id):
+    def _processMultipleIP(self,ipl,ipaddrs):
         for theip in ipl:
-            for jblk in ipaddrs['data'].items():
-                if jblk['ip'] == theip:
-                    jblk['status'] = 'available'
+            for obj in ipaddrs:
+                if obj['ip'] == theip:
+                    ipaddr = IPAddrs(
+                        id=obj['id'],
+                        ip=obj['ip'],
+                        status='available'
+                        )                       
+                    db.session.merge(ipaddr)
                     break
-        return ipaddrs
+        return
         
     def put(self):
         """
@@ -58,8 +63,7 @@ class ReleaseResource(Resource):
             ipaddr = self._processSingleIP(ipaddrs, json_data)
             db.session.merge(ipaddr)
         elif len(ipl) > 0:
-            ipaddr = self._processMultipleIP(IPAddrs, json_data, theip, id)
-            db.session.merge(ipaddr)
+            ipaddr = self._processMultipleIP(ipl,ipaddrs)
                 
 
         db.session.commit()
