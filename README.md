@@ -24,7 +24,7 @@ I utilized the **Flask** framework to create my 4 endpoints and services which a
 **POST:** http://localhost:5000/createipaddr
 ```
 JSON{
-		'id':<numeric value>
+		'id':<integer>
 		'ip':CIDR-> "192.168.0.1" or "192.168.1.0/24"
 	}
 ```
@@ -37,19 +37,17 @@ JSON{
 **PUT:** http://localhost:5000/acquireip
 ```
 JSON{
-		'id': <placholder for PRIMARY KEY>
-		'ip':CIDR-> "192.168.0.1" or "192.168.1.0/24" # ip or mask you acquiring
+		'ip':CIDR String -> "192.168.0.1" or "192.168.1.0/24" # ip or mask you are acquiring
     }
 ```
     
 **PUT:** http://localhost:5000/releaseip
 ```
 JSON{
-		'id': <placholder for PRIMARY KEY>
-		'ip':CIDR-> "192.168.0.1" or "192.168.1.0/24" # ip or mask you releasing
+		'ip':CIDR String -> "192.168.0.1" or "192.168.1.0/24" # ip or mask you are releasing
 	}
 ```
-Documentation is built with Sphinx.
+Documentation is built with Sphinx. I tested my API using Postman.
 
 Areas of Improvement
 ---------------------
@@ -74,7 +72,7 @@ Installation / Usage
 - domain name
 
 _Since Ntrepid uses Macs that is the platform assumption_
-There is file _setup.sh_ that will install the ruby, brew, postgres, virtualenv if needed.
+There is a file _setup.sh_ that will install the ruby, brew, postgres, virtualenv if needed.
 
 
 **To build web based documentation:**
