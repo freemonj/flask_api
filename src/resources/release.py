@@ -5,7 +5,8 @@ Created on Apr 27, 2019
 '''
 from flask import request
 from flask_restful import Resource
-from Model import db, Availability, AvailabilitySchema, IPAddrsSchema
+from Model import db, Availability, AvailabilitySchema, IPAddrs,IPAddrsSchema
+import ipaddress
 
 availabilities_schema = AvailabilitySchema(many=True)
 availability_schema = AvailabilitySchema()
@@ -18,8 +19,13 @@ class ReleaseResource(Resource):
         for jblk in ipaddrs:
             if jblk['ip'] == json_data['ip']:
                 jblk['status'] = 'available'
+                ipaddr = IPAddrs(
+                    id=jblk['id'],
+                    ip=jblk['ip'],
+                    status='available'
+                    )                   
                 break
-        return ipaddrs
+        return ipaddr
         
     def _processMultipleIP(self,IPAddrs,json_data,theip,id):
         for theip in ipl:
@@ -50,13 +56,13 @@ class ReleaseResource(Resource):
         ipl = [str(ip) for ip in adr.hosts()]
         if len(ipl) == 0:
             ipaddr = self._processSingleIP(ipaddrs, json_data)
-            db.session.add(ipaddrs_schema.dump(ipaddr).data)            
+            db.session.merge(ipaddr)
         elif len(ipl) > 0:
             ipaddr = self._processMultipleIP(IPAddrs, json_data, theip, id)
-            db.session.add(ipaddrs_schema.dump(ipaddr).data)
+            db.session.merge(ipaddr)
                 
 
         db.session.commit()
-        result = availabilities_schema.dump(ipaddr).data
+        result = ipaddr_schema.dump(ipaddr).data
 
         return { "status": 'success', 'data': result }, 204

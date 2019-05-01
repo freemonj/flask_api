@@ -19,11 +19,13 @@ class AcquireResource(Resource):
         for jblk in ipaddrs:
             if jblk['ip'] == json_data['ip']:
                 jblk['status'] = 'acquired'
-                IPAddrs.id = jblk['id']
-                IPAddrs.ip = jblk['ip']
-                IPAddrs.status = 'acquired'
+                ipaddr = IPAddrs(
+                    id=jblk['id'],
+                    ip=jblk['ip'],
+                    status='acquired'
+                    )   
                 break
-        return IPAddrs
+        return ipaddr
         
     def _processMultipleIP(self,IPAddrs,json_data,theip,id):
         for theip in ipl:
@@ -56,12 +58,12 @@ class AcquireResource(Resource):
         ipl = [str(ip) for ip in adr.hosts()]
         if len(ipl) == 0:
             ipaddr = self._processSingleIP(ipaddrs, json_data)
-            db.session.add(ipaddr)
+            db.session.merge(ipaddr)
         elif len(ipl) > 0:
             ipaddr = self._processMultipleIP(IPAddrs, json_data, theip, id)
             
         
         db.session.commit()
-        result = availabilities_schema.dump(ipaddr).data
+        result = ipaddr_schema.dump(ipaddr).data
 
         return { "status": 'success', 'data': result }, 204
