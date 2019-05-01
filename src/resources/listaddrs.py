@@ -1,9 +1,3 @@
-'''
-Created on Apr 29, 2019
-
-@author: freemonj
-'''
-
 from flask_restful import Resource
 from flask import request
 from Model import db, IPAddrs, IPAddrsSchema

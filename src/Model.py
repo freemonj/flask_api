@@ -1,8 +1,3 @@
-'''
-Created on Apr 26, 2019
-
-@author: freemonj
-'''
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
 from marshmallow import Schema, fields, pre_load, validate

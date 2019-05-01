@@ -1,9 +1,3 @@
-'''
-Created on Apr 26, 2019
-
-@author: freemonj
-'''
-
 import os
 import getpass
 

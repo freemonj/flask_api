@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Welcome to IP Endpoints API’s documentation! &mdash; IP Endpoints API 1.0 documentation</title>
+  <title>Welcome to IP Endpoint API’s documentation! &mdash; IP Endpoint API 1.0 documentation</title>
   
 
   
@@ -48,7 +48,7 @@
           
 
           
-            <a href="#" class="icon icon-home"> IP Endpoints API
+            <a href="#" class="icon icon-home"> IP Endpoint API
           
 
           
@@ -80,7 +80,7 @@
             
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Welcome to IP Endpoints API’s documentation!</a></li>
+<li><a class="reference internal" href="#">Welcome to IP Endpoint API’s documentation!</a></li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 </div>
@@ -96,7 +96,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">IP Endpoints API</a>
+          <a href="#">IP Endpoint API</a>
         
       </nav>
 
@@ -127,7 +127,7 @@
     
       <li><a href="#">Docs</a> &raquo;</li>
         
-      <li>Welcome to IP Endpoints API’s documentation!</li>
+      <li>Welcome to IP Endpoint API’s documentation!</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -146,34 +146,55 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="welcome-to-ip-endpoints-api-s-documentation">
-<h1>Welcome to IP Endpoints API’s documentation!<a class="headerlink" href="#welcome-to-ip-endpoints-api-s-documentation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="welcome-to-ip-endpoint-api-s-documentation">
+<h1>Welcome to IP Endpoint API’s documentation!<a class="headerlink" href="#welcome-to-ip-endpoint-api-s-documentation" title="Permalink to this headline">¶</a></h1>
 <p><strong>Rest IP Address/CIDR API</strong></p>
-<p><em>version number: 1.0.0 author: Freemon Johnson</em></p>
+<p><em>version number: 1.0.0</em></p>
+<p><strong>author: Freemon Johnson</strong></p>
 <p><strong>Overview</strong></p>
 <p>Create a simple IP Address Management REST API using python on top of any data store. It will consist of the ability to add IP Addresses by CIDR block and then either acquire or release IP addresses individually. Each IP address will have a status associated with it that is either “available” or “acquired”.</p>
-<p>The REST API must support four endpoints… - Create IP addresses - take in a CIDR block and add all IP addresses within that block to the database with status “available” - List IP addresses - return all IP addresses in the system with their current status - Acquire an IP - set the status of a certain IP to “acquired” - Release an IP - set the status of a certain IP to “available”</p>
+<p>The REST API must support four endpoints:</p>
+<ul class="simple">
+<li>Create IP addresses</li>
+<li>take in a CIDR block and add all IP addresses within that block to the database with status “available”</li>
+<li>return all IP addresses in the system with their current status</li>
+<li>Acquire an IP -&gt; set the status of a certain IP to “acquired”</li>
+<li>Release an IP -&gt; set the status of a certain IP to “available”</li>
+</ul>
 <p><strong>Methodology</strong></p>
-<p>I utilized the Flask framework to create my 4 endpoints and services.
-Installation / Usage</p>
-<p><strong>Installation Requirements:</strong> python version 3.x. postgres database flask framework virtualenv</p>
-<p><strong>Installation Dependencies:</strong> You need to know the following for your postgres database: - database name - username - password - domain name Since Ntrepid uses Macs that is the platform assumption There is file setup.sh that will install the ruby, brew, postgres, virtualenv if needed.</p>
+<p>I utilized the Flask framework to create my 4 endpoints and services.</p>
+<p><strong>Installation/Usage</strong></p>
+<p><strong>Installation Requirements:</strong></p>
+<ul class="simple">
+<li>python version 3.x.</li>
+<li>postgres database</li>
+<li>flask framework</li>
+<li>virtualenv</li>
+</ul>
+<p><strong>Installation Dependencies:</strong></p>
+<p>You need to know the following for your postgres database:</p>
+<ul class="simple">
+<li>database name</li>
+<li>username</li>
+<li>password</li>
+<li>domain name</li>
+</ul>
+<p>Since Ntrepid uses Macs that is the platform assumption There is file setup.sh that will install the ruby, brew, postgres, virtualenv if needed.</p>
 <p><em>To build web based documentation:</em></p>
-<p>You need to install sphinx package: here</p>
+<p>You need to install sphinx package from PyPI or brew.</p>
 <p>Please edit the following files on your system after running:</p>
 <blockquote>
 <div>$ sphinx-quickstart</div></blockquote>
 <p><strong>conf.py:</strong></p>
 <blockquote>
-<div>sys.path.append(&lt;where you <a href="#id1"><span class="problematic" id="id2">*</span></a>.rst files are located&gt;)
-I highly recommend changing the &lt;html_theme&gt; to “default” or “sphinx_rtd_theme”</div></blockquote>
-<p><em>$ sphinx-build -b html &lt;docs directory path&gt; &lt;build/html directory path&gt;</em>
-My documentation can presently be opened with a web browser at index.html file in flaskapi/docs/_build/_ directory.</p>
+<div><p><code class="docutils literal notranslate"><span class="pre">`sys.path.append(&lt;where</span> <span class="pre">you</span> <span class="pre">*.rst</span> <span class="pre">files</span> <span class="pre">are</span> <span class="pre">located&gt;)`</span></code></p>
+<p>I highly recommend changing the &lt;html_theme&gt; to “default” or “sphinx_rtd_theme”</p>
+</div></blockquote>
+<p><em>$ sphinx-build -b html &lt;docs directory path&gt; &lt;build/html directory path&gt;</em></p>
+<p><strong>My documentation can presently be opened with a web browser at index.html file in “flask_api/_build/html/index.html” directory.</strong></p>
 <p>Example</p>
 <p>$  python src/run.py</p>
-<span class="target" id="module-src.run"></span><p>Created on Apr 26, 2019</p>
-<p>&#64;author: freemonj</p>
-<dl class="function">
+<span class="target" id="module-src.run"></span><dl class="function">
 <dt id="src.run.create_app">
 <code class="descclassname">src.run.</code><code class="descname">create_app</code><span class="sig-paren">(</span><em>config_filename</em><span class="sig-paren">)</span><a class="headerlink" href="#src.run.create_app" title="Permalink to this definition">¶</a></dt>
 <dd><p>Instantiates the Flask instance and associated parameters.
@@ -182,11 +203,7 @@ My documentation can presently be opened with a web browser at index.html file i
 :rtype: flask object</p>
 </dd></dl>
 
-<span class="target" id="module-src.config"></span><p>Created on Apr 26, 2019</p>
-<p>&#64;author: freemonj</p>
-<span class="target" id="module-src.Model"></span><p>Created on Apr 26, 2019</p>
-<p>&#64;author: freemonj</p>
-<dl class="class">
+<span class="target" id="module-src.Model"></span><dl class="class">
 <dt id="src.Model.Availability">
 <em class="property">class </em><code class="descclassname">src.Model.</code><code class="descname">Availability</code><span class="sig-paren">(</span><em>id</em>, <em>ip</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Model.Availability" title="Permalink to this definition">¶</a></dt>
 <dd><p>Availability class model for CIDR/IPs</p>
@@ -194,7 +211,7 @@ My documentation can presently be opened with a web browser at index.html file i
 
 <dl class="class">
 <dt id="src.Model.AvailabilitySchema">
-<em class="property">class </em><code class="descclassname">src.Model.</code><code class="descname">AvailabilitySchema</code><span class="sig-paren">(</span><em>extra=None</em>, <em>only=None</em>, <em>exclude=()</em>, <em>prefix=''</em>, <em>strict=None</em>, <em>many=False</em>, <em>context=None</em>, <em>load_only=()</em>, <em>dump_only=()</em>, <em>partial=False</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Model.AvailabilitySchema" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">src.Model.</code><code class="descname">AvailabilitySchema</code><span class="sig-paren">(</span><em>extra=None</em>, <em>only=()</em>, <em>exclude=()</em>, <em>prefix=''</em>, <em>strict=None</em>, <em>many=False</em>, <em>context=None</em>, <em>load_only=()</em>, <em>dump_only=()</em>, <em>partial=False</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Model.AvailabilitySchema" title="Permalink to this definition">¶</a></dt>
 <dd><p>Availability Schema for JSON data</p>
 </dd></dl>
 
@@ -206,7 +223,7 @@ My documentation can presently be opened with a web browser at index.html file i
 
 <dl class="class">
 <dt id="src.Model.IPAddrsSchema">
-<em class="property">class </em><code class="descclassname">src.Model.</code><code class="descname">IPAddrsSchema</code><span class="sig-paren">(</span><em>extra=None</em>, <em>only=None</em>, <em>exclude=()</em>, <em>prefix=''</em>, <em>strict=None</em>, <em>many=False</em>, <em>context=None</em>, <em>load_only=()</em>, <em>dump_only=()</em>, <em>partial=False</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Model.IPAddrsSchema" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">src.Model.</code><code class="descname">IPAddrsSchema</code><span class="sig-paren">(</span><em>extra=None</em>, <em>only=()</em>, <em>exclude=()</em>, <em>prefix=''</em>, <em>strict=None</em>, <em>many=False</em>, <em>context=None</em>, <em>load_only=()</em>, <em>dump_only=()</em>, <em>partial=False</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Model.IPAddrsSchema" title="Permalink to this definition">¶</a></dt>
 <dd><p>IP Address Schema for JSON data</p>
 </dd></dl>
 

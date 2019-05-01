@@ -1,8 +1,3 @@
-'''
-Created on Apr 26, 2019
-
-@author: freemonj
-'''
 from flask import Flask
 import traceback
 import argparse

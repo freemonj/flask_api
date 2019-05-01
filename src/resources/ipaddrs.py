@@ -1,8 +1,3 @@
-'''
-Created on Apr 26, 2019
-
-@author: freemonj
-'''
 from flask_restful import Resource
 from flask import request
 from Model import db, IPAddrs, IPAddrsSchema
@@ -13,16 +8,9 @@ ipaddrs_schema = IPAddrsSchema(many=True)
 ipaddr_schema = IPAddrsSchema()
 
 class IPAddrResource(Resource):
-#     def get(self):
-#         """
-#         GET to return/list the IP address.
-#         :params: None
-#         :return: GET HTML code
-#         :rtype: Integer
-#         """                
-#         ipaddrs = IPAddrs.query.all()
-#         ipaddrs = ipaddrs_schema.dump(ipaddrs).data
-#         return {'status': 'success', 'data': ipaddrs}, 200
+    '''
+    Class for creating/adding IP's or IP Mask to the database
+    '''
     
     def _processSingleIP(self,IPAddrs,json_data):
         ipaddr = IPAddrs(

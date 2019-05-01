@@ -1,8 +1,3 @@
-'''
-Created on Apr 27, 2019
-
-@author: freemonj
-'''
 from flask import request
 from flask_restful import Resource
 from Model import db, Availability, AvailabilitySchema, IPAddrs,IPAddrsSchema
@@ -14,6 +9,9 @@ ipaddrs_schema = IPAddrsSchema(many=True)
 ipaddr_schema = IPAddrsSchema()
 
 class ReleaseResource(Resource):
+    '''
+    Class for releasing IP's
+    '''
     
     def _processSingleIP(self,ipaddrs,json_data):
         for jblk in ipaddrs:
