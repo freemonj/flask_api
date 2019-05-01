@@ -59,7 +59,7 @@ Areas of Improvement
 Installation / Usage
 --------------------
 *Installation Requirements*: 
-* python version 3.x. 
+* python version 3.x
 * postgres database
 * flask framework
 * virtualenv
