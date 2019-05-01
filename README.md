@@ -53,7 +53,8 @@ Areas of Improvement
 ---------------------
 * My function for processing an IP mask to be acquired or release take Big O(N^2)
 * Keeping persistent PRIMARY KEYS in Postgres so when you send consecutive creations you are appending to the database instead of overwriting keys
-* Apparently Sphinx does not work well with framework MVC design patterns like Flask as I found out the hard way 
+* Apparently Sphinx does not work well with framework MVC design patterns like Flask as I found out the hard way
+* TLS was not invoked on the server side for REST request 
 
 
 Installation / Usage
