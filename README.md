@@ -69,7 +69,7 @@ Installation / Usage
 - password
 - domain name
 
-_Since Ntrepid uses Macs that is the platform assumption_
+_NOTE: Mac's are the assumed platform and the default port of 5000 is assumed for the postgres server_
 There is a file _setup.sh_ that will install the ruby, brew, postgres, virtualenv if needed.
 
 
