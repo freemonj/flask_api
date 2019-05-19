@@ -32,7 +32,7 @@ if __name__ == "__main__":
     try:
         #cliparser = argparse.ArgumentParser(description="Flask IP Address API")
         app = create_app("config")
-        app.run(debug=True)        
+        app.run(ssl_context="adhoc",debug=True)        
     except:
         if len(sys.argv) <= 1:
             print("error trace = {}".format(traceback.format_exc()))

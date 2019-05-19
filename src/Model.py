@@ -14,12 +14,9 @@ class IPAddrs(db.Model):
     IP Address class model
     '''
     __tablename__ = 'ipaddrs'
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     ip = db.Column(db.String(250), nullable=False)
     status = db.Column(db.String(250), nullable=False)
-    #creation_date = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
-    #ip_id = db.Column(db.Integer, db.ForeignKey('cidr.id', ondelete='CASCADE'), nullable=True)
-    #availability = db.relationship('CIDRBlock', backref=db.backref('ipaddress', lazy='dynamic' ))
 
     def __init__(self, id, ip, status):
         self.id = id

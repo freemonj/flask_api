@@ -26,16 +26,14 @@ class ReleaseResource(Resource):
         return ipaddr
         
     def _processMultipleIP(self,ipl,ipaddrs):
-        for theip in ipl:
-            for obj in ipaddrs:
-                if obj['ip'] == theip:
-                    ipaddr = IPAddrs(
-                        id=obj['id'],
-                        ip=obj['ip'],
-                        status='available'
-                        )                       
-                    db.session.merge(ipaddr)
-                    break
+        for obj in ipaddrs:
+            if obj['ip'] in ipl:
+                ipaddr = IPAddrs(
+                    id=obj['id'],
+                    ip=obj['ip'],
+                    status='available'
+                    )                       
+                db.session.merge(ipaddr)
         return
         
     def put(self):

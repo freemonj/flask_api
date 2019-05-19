@@ -13,19 +13,33 @@ class IPAddrResource(Resource):
     '''
     
     def _processSingleIP(self,IPAddrs,json_data):
-        ipaddr = IPAddrs(
-            id=json_data['id'],
-            ip=json_data['ip'],
-            status='available'
-            )        
+        if 'id' in json_data:            
+            ipaddr = IPAddrs(
+                id=json_data['id'],
+                ip=json_data['ip'],
+                status='available'
+                )
+        else:
+            ipaddr = IPAddrs(
+                id=None,
+                ip=json_data['ip'],
+                status='available'
+                )            
         return ipaddr
     
-    def _processMultipleIP(self,IPAddrs,json_data,theip,id):
-        ipaddr = IPAddrs(
-            id=id,
-            ip=str(theip),
-            status='available'
-            )
+    def _processMultipleIP(self,IPAddrs,json_data,theip,theid):
+        if 'id' in json_data:
+            ipaddr = IPAddrs(
+                id=theid,
+                ip=str(theip),
+                status='available'
+                )
+        else:
+            ipaddr = IPAddrs(
+                id=None,
+                ip=str(theip),
+                status='available'
+                )            
         return ipaddr
     
     def post(self):
@@ -50,7 +64,7 @@ class IPAddrResource(Resource):
             return {'message': 'IP already exists'}, 400
         adr = ipaddress.ip_network(json_data['ip'])
         ipl = [str(ip) for ip in adr.hosts()]
-        if len(ipl) == 0:
+        if not ipl:
             ipaddr = self._processSingleIP(IPAddrs,json_data)
             db.session.add(ipaddr)      
         elif len(ipl) > 0:
