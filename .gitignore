@@ -1,0 +1,11 @@
+src/__pycache__/Model.cpython-37.pyc
+.env
+.vscode/launch.json
+src/__pycache__/app.cpython-37.pyc
+src/__pycache__/config.cpython-37.pyc
+src/__pycache__/run.cpython-37.pyc
+src/resources/__pycache__/__init__.cpython-37.pyc
+src/resources/__pycache__/acquire.cpython-37.pyc
+src/resources/__pycache__/ipaddrs.cpython-37.pyc
+src/resources/__pycache__/listaddrs.cpython-37.pyc
+src/resources/__pycache__/release.cpython-37.pyc

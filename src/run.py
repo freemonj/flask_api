@@ -24,7 +24,7 @@ def create_app(config_filename):
 
 
 if __name__ == "__main__":    
-    assert (sys.version_info >= (3,0,0)), "python version 3.x is required!"
+    assert (sys.version_info >= (3,0,0)), "python version > 3.x is required!"
     if len(sys.argv) > 1:
         print("Usage:")
         print("python run.py ")
